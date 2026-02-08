@@ -1,13 +1,13 @@
 class Solution:
-    def solve(self, nums, i, arr, res):
-        if i >= len(nums):
+    def solve(self, nums: List[int], idx: int, temp: List[int], result: List[List[int]]) -> None:
+        if idx >= len(nums):
             return
-        for i in range(i, len(nums)):
-            arr.append(nums[i])
-            res.append(arr[:])
-            self.solve(nums, i + 1, arr, res)
-            arr.pop()
+        for idx in range(idx, len(nums)):
+            temp.append(nums[idx])
+            result.append(temp[:])
+            self.solve(nums, idx + 1, temp, result)
+            temp.pop()
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = [[]]
-        self.solve(nums, 0, [], res)
-        return res
+        result = [[]]
+        self.solve(nums, 0, [], result)
+        return result
