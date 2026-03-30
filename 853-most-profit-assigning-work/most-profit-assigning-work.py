@@ -1,5 +1,3 @@
-from bisect import bisect_right
-
 class Solution:
     def maxProfitAssignment(self, difficulty, profit, worker):
         jobs = sorted(zip(difficulty, profit))
@@ -15,8 +13,8 @@ class Solution:
         
         result = 0
         for w in worker:
-            idx = bisect_right(diffs, w) - 1
-            if idx >= 0:
-                result += profits[idx]
+            i = bisect_right(diffs, w)
+            if i:
+                result += profits[i-1]
         
         return result
