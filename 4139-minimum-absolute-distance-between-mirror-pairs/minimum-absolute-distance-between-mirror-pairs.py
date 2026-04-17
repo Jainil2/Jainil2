@@ -1,13 +1,21 @@
 class Solution:
-    def reverse(self, num):
-        return int(str(num)[::-1])
+    def reverse(self, num: int) -> int:
+        rev = 0
+        while num > 0:
+            rev = rev * 10 + num % 10
+            num //= 10
+        return rev
 
     def minMirrorPairDistance(self, nums: List[int]) -> int:
-        rev = defaultdict(int)
-        res = len(nums)
-        for i in range(len(nums)):
-            if nums[i] in rev:
-                res = min(res, i - rev[nums[i]])
-            r = self.reverse(nums[i])
-            rev[r] = i
-        return -1 if res == len(nums) else res
+        last_seen = {}
+        res = float('inf')
+
+        for i, x in enumerate(nums):
+            if x in last_seen:
+                res = min(res, i - last_seen[x])
+
+            r = self.reverse(x)
+
+            last_seen[r] = i
+
+        return -1 if res == float('inf') else res
