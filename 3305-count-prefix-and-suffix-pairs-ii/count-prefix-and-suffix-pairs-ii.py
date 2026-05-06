@@ -3,7 +3,6 @@ class TrieNode:
         self.children = {}
         self.count = 0
 
-
 class Solution:
 
     def countPrefixSuffixPairs(self, words):
