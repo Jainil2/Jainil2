@@ -3,7 +3,6 @@ class Solution:
         sets = [set(companies) for companies in favoriteCompanies]
         n = len(sets)
         result = []
-
         for i in range(n):
             is_subset_of_someone = False
             for j in range(n):
@@ -14,8 +13,4 @@ class Solution:
                     break
             if not is_subset_of_someone:
                 result.append(i)
-
         return result
-
-                
-                
