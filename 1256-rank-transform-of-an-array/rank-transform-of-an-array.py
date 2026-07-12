@@ -1,21 +1,24 @@
 class Solution:
     def arrayRankTransform(self, arr: List[int]) -> List[int]:
-        if not arr:
-            return []
+        import heapq
 
-        nums = [(arr[i], i) for i in range(len(arr))]
-        nums.sort()
+        n = len(arr)
+        heap = []
 
-        result = [0] * len(arr)
+        for i, val in enumerate(arr):
+            heapq.heappush(heap, (val, i))
 
-        rank = 1
-        prev = nums[0][0]
-        result[nums[0][1]] = rank
+        rank = 0
+        prev = None
+        ans = [0] * n
 
-        for val, idx in nums[1:]:
+        while heap:
+            val, idx = heapq.heappop(heap)
+
             if val != prev:
                 rank += 1
                 prev = val
-            result[idx] = rank
 
-        return result
+            ans[idx] = rank
+
+        return ans
