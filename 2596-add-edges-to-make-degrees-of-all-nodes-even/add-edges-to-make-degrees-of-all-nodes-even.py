@@ -17,11 +17,9 @@ class Solution:
         if len(odd) == 2:
             u, v = odd
 
-            # Can directly connect u and v?
             if v not in graph[u]:
                 return True
 
-            # Try an intermediate vertex
             for x in range(1, n + 1):
                 if x != u and x != v:
                     if x not in graph[u] and x not in graph[v]:
